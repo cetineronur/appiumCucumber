@@ -25,12 +25,11 @@ public class ApiDemosDragDrop {
     public void kullanici_birinci_topu_ucuncu_topun_uzerine_birakir() {
         TouchAction touchAction = new TouchAction(Driver.get());
         touchAction.longPress(ElementOption.element(apiDemosDragDrop.dot1)).
-                moveTo(ElementOption.element(apiDemosDragDrop.dot3)).
-                release().perform();
+                moveTo(ElementOption.element(apiDemosDragDrop.dot3)).release().perform();
     }
     @Then("kullanici cikan yaziyi dogrular")
     public void kullanici_cikan_yaziyi_dogrular() throws InterruptedException {
-        Thread.sleep(5000);
+        Thread.sleep(4000);
         Assert.assertTrue(apiDemosDragDrop.text.isDisplayed());
     }
 

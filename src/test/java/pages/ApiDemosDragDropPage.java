@@ -17,13 +17,13 @@ public class ApiDemosDragDropPage {
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='Drag and Drop']")
     public WebElement dragDrop;
 
-    @AndroidFindBy(id = "io.appium.android.apis:id/drag_dot_1")
+    @AndroidFindBy(xpath = "(//android.view.View)[1]")
     public WebElement dot1;
 
-    @AndroidFindBy(id = "io.appium.android.apis:id/drag_dot_1")
+    @AndroidFindBy(xpath = "(//android.view.View)[2]")
     public WebElement dot2;
 
-    @AndroidFindBy(id = "io.appium.android.apis:id/drag_dot_1")
+    @AndroidFindBy(xpath = "(//android.view.View)[3]")
     public WebElement dot3;
 
     @AndroidFindBy(id = "io.appium.android.apis:id/drag_result_text")
