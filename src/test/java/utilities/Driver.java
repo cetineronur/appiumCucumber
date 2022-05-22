@@ -22,10 +22,8 @@ public class Driver {
             String platform = ConfigurationReader.getProperty("platform");
             DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
 
-
             switch (platform) {
                 case "android":
-
                     desiredCapabilities.setCapability("platformName", "Android");
                     desiredCapabilities.setCapability("platformVersion", "8.0");
                     desiredCapabilities.setCapability("deviceName", "Pixel_2");
@@ -53,12 +51,10 @@ public class Driver {
                         e.printStackTrace();
                     }
                 default:
-
             }
         }
         return driver;
     }
-
     public static void closeDriver() {
         if (driver != null) {
             driver.quit();
