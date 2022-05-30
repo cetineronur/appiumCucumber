@@ -2,6 +2,8 @@ package utilities;
 
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
+import io.appium.java_client.ios.IOSDriver;
+import io.appium.java_client.ios.IOSElement;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
 import java.net.MalformedURLException;
@@ -14,10 +16,8 @@ public class Driver {
     }
 
     private static AndroidDriver<AndroidElement> driver;
-    public static String userName = "hkksrkc1";
-    public static String accessKey = "sVkrv1YNrVGCWusu9rrk";
 
-    public static AndroidDriver<AndroidElement> get() {
+    public static AndroidDriver<AndroidElement> get() throws MalformedURLException {
         if (driver == null) {
             String platform = ConfigurationReader.getProperty("platform");
             DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
@@ -28,28 +28,36 @@ public class Driver {
                     desiredCapabilities.setCapability("platformVersion", "8.0");
                     desiredCapabilities.setCapability("deviceName", "Pixel_2");
                     desiredCapabilities.setCapability("automationName", "UiAutomator2");
-                    desiredCapabilities.setCapability("appPackage",ConfigurationReader.getProperty("appPackage"));
-                    desiredCapabilities.setCapability("appActivity",ConfigurationReader.getProperty("appActivity"));
-                    //desiredCapabilities.setCapability("app", "D:\\mobileTesting\\ApidemosCucumber\\apidemos.apk");
+                    //desiredCapabilities.setCapability("orientation","LANDSCAPE");
+                   //desiredCapabilities.setCapability("appPackage",ConfigurationReader.getProperty("appPackage"));
+                   //desiredCapabilities.setCapability("appActivity",ConfigurationReader.getProperty("appActivity"));
+                    desiredCapabilities.setCapability("app", "D:\\mobileTesting\\AppiumCucumber\\General-Store.apk");
 
-                    try {
                         driver = new AndroidDriver<>(new URL("http://localhost:4723/wd/hub"), desiredCapabilities);
                         Driver.get().manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-                    } catch (MalformedURLException e) {
-                        e.printStackTrace();
-                    }
-                    break;
-                case "browserstack":
 
-                    desiredCapabilities.setCapability("os_version", "9.0");
-                    desiredCapabilities.setCapability("device", "Google Pixel 3");
-                    desiredCapabilities.setCapability("app", "bs://83f53bd8d4aad4259091bc9d409667afad19a2a9");
-                    try {
-                        driver = new AndroidDriver<AndroidElement>(new URL("https://" + userName + ":" + accessKey + "@hub-cloud.browserstack.com/wd/hub"), desiredCapabilities);
+                   // break;
+                case "browserstack":
+                    DesiredCapabilities caps = new DesiredCapabilities();
+                    caps.setCapability("browserstack.user", "kartalonur_mgHvyd");
+                    caps.setCapability("browserstack.key", "fXrFzL6ssywwWRPyj9Ht");
+
+                    // Set URL of the application under test
+                    caps.setCapability("app", "bs://444bd0308813ae0dc236f8cd461c02d3afa7901d");
+                    caps.setCapability("device", "iPhone XS");
+                    caps.setCapability("os_version", "12");
+
+                    // Set other BrowserStack capabilities
+                    caps.setCapability("project", "First Java Project");
+                    caps.setCapability("build", "browserstack-build-1");
+                    caps.setCapability("name", "first_test");
+
+
+                        IOSDriver<IOSElement> iosDriver = new IOSDriver<IOSElement>(
+                                new URL("http://hub-cloud.browserstack.com/wd/hub"), caps);
                         Driver.get().manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-                    } catch (MalformedURLException e) {
-                        e.printStackTrace();
-                    }
+
+                    break;
                 default:
             }
         }

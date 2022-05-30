@@ -9,11 +9,12 @@ import org.openqa.selenium.support.PageFactory;
 import utilities.Driver;
 
 import javax.accessibility.Accessible;
+import java.net.MalformedURLException;
 import java.util.List;
 
 public class ApiDemosScroolPage {
 
-    public ApiDemosScroolPage(){
+    public ApiDemosScroolPage() throws MalformedURLException {
         PageFactory.initElements(new AppiumFieldDecorator(Driver.get()),this);
     }
 

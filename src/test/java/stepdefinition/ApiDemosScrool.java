@@ -9,44 +9,33 @@ import io.cucumber.java.en.Given;
 import org.openqa.selenium.Dimension;
 import pages.ApiDemosScroolPage;
 import utilities.Driver;
+import utilities.ReusableMethods;
 
+import java.net.MalformedURLException;
 import java.time.Duration;
 import java.util.List;
 
 public class ApiDemosScrool {
     ApiDemosScroolPage apiDemosScroolPage = new ApiDemosScroolPage();
 
+    public ApiDemosScrool() throws MalformedURLException {
+    }
+
     @Given("kullanici viewse tiklar")
-    public void kullanici_viewse_tiklar() {
-        apiDemosScroolPage.views.click();
+    public void kullanici_viewse_tiklar() throws InterruptedException, MalformedURLException {
+        ReusableMethods.clickOnPage("Views");
     }
 
     @Given("kullanici Switches tiklar")
-    public void kullanici_switches_tiklar() throws InterruptedException {
-    
-        List<MobileElement> list ;
-        do {
-            list=apiDemosScroolPage.switches;
-            Dimension dimension= Driver.get().manage().window().getSize();
+    public void kullanici_switches_tiklar() throws InterruptedException, MalformedURLException {
 
-            int start_x= (int) (dimension.width*0.5);
-            int start_y= (int) (dimension.height*0.8);
-
-            int end_x = (int) (dimension.width*0.5);
-            int end_y = (int) (dimension.height*0.2);
-
-            TouchAction touchAction = new TouchAction(Driver.get());
-            touchAction.press(PointOption.point(start_x,start_y)).
-                    moveTo(PointOption.point(end_x,end_y)).release().perform();
-        }while (list.size()==0);
-
-        apiDemosScroolPage.switches.get(0).click();
+       ReusableMethods.clickOnPage("Switches");
 
     }
 
     @And("kullanici webview{int} tiklar")
-    public void kullaniciWebviewTiklar(int arg0) {
-        Driver.get().findElementByAndroidUIAutomator("new UiScrollable(new UiSelector()).scrollIntoView(text(\"WebView\"))");
-        apiDemosScroolPage.webview.click();
+    public void kullaniciWebviewTiklar(int arg0) throws MalformedURLException {
+        //uygulamanin asagi bolumlerine scrool yaparak tiklar
+        ReusableMethods.scrollWithUiScrollable("WebView");
     }
 }

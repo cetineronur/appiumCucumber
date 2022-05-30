@@ -6,8 +6,10 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 import utilities.Driver;
 
+import java.net.MalformedURLException;
+
 public class ApiDemosPage  {
-    public ApiDemosPage(){
+    public ApiDemosPage() throws MalformedURLException {
         PageFactory.initElements(new AppiumFieldDecorator(Driver.get()),this);
     }
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='Preference']")

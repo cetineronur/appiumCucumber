@@ -6,8 +6,10 @@ import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import org.openqa.selenium.support.PageFactory;
 import utilities.Driver;
 
+import java.net.MalformedURLException;
+
 public class ApiDemosDateWidgetsPage {
-    public ApiDemosDateWidgetsPage(){
+    public ApiDemosDateWidgetsPage() throws MalformedURLException {
         PageFactory.initElements(new AppiumFieldDecorator(Driver.get()),this);
     }
 

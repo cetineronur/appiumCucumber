@@ -9,9 +9,14 @@ import org.junit.Assert;
 import pages.ApiDemosSwitchPage;
 import utilities.Driver;
 
+import java.net.MalformedURLException;
+
 public class ApiDemosSwitchStepdefs {
 
     ApiDemosSwitchPage apiDemosSwitchPage = new ApiDemosSwitchPage();
+
+    public ApiDemosSwitchStepdefs() throws MalformedURLException {
+    }
 
     @Given("kullanici Switchi tiklar")
     public void kullanici_switchi_tiklar() {
@@ -19,7 +24,7 @@ public class ApiDemosSwitchStepdefs {
     }
 
     @Given("kullanici ilk Switch butonunu acar")
-    public void kullanici_ilk_switch_butonunu_acar() {
+    public void kullanici_ilk_switch_butonunu_acar() throws MalformedURLException {
         TouchAction touchAction = new TouchAction(Driver.get());
         if(apiDemosSwitchPage.firstSwitch.getAttribute("text").equals("OFF")){
             touchAction.tap(TapOptions.tapOptions().withElement(ElementOption.element(apiDemosSwitchPage.firstSwitch))).perform();

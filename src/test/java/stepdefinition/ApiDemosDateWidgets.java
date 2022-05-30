@@ -6,9 +6,14 @@ import io.cucumber.java.en.Given;
 import pages.ApiDemosDateWidgetsPage;
 import utilities.Driver;
 
+import java.net.MalformedURLException;
+
 public class ApiDemosDateWidgets {
 
     ApiDemosDateWidgetsPage apiDemosDateWidgets = new ApiDemosDateWidgetsPage();
+
+    public ApiDemosDateWidgets() throws MalformedURLException {
+    }
 
     @Given("kullanici Date Widget e tiklar")
     public void kullanici_date_widget_e_tiklar() {
@@ -23,7 +28,7 @@ public class ApiDemosDateWidgets {
         apiDemosDateWidgets.dokuzrakami.click();
     }
     @Given("kullanici saati dokuzkirbes olarak ayarlar")
-    public void kullanici_saati_dokuzkirbes_olarak_ayarlar() {
+    public void kullanici_saati_dokuzkirbes_olarak_ayarlar() throws MalformedURLException {
         TouchAction touchAction = new TouchAction(Driver.get());
         touchAction.press(ElementOption.element(apiDemosDateWidgets.onbesrakami)).
                 moveTo(ElementOption.element(apiDemosDateWidgets.kirkbesrakami)).release().perform();

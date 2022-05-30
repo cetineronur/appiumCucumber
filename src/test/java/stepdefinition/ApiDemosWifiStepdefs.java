@@ -6,9 +6,14 @@ import io.cucumber.java.en.Then;
 import pages.ApiDemosPage;
 import utilities.Driver;
 
+import java.net.MalformedURLException;
+
 public class ApiDemosWifiStepdefs {
 
     ApiDemosPage api=new ApiDemosPage();
+
+    public ApiDemosWifiStepdefs() throws MalformedURLException {
+    }
 
     @Given("Prefenceye tikla")
     public void prefenceyeTikla() {
