@@ -32,10 +32,10 @@ public class InterviewCalculator {
 
     @And("kullanici cikan sayiyi dogrular")
     public void kullaniciCikanSayiyiDogrular() {
-       Double expected= Double.valueOf(interwievCalculatorPage.sonuc.getText().replaceAll("\\D",""));
+       String expected= (interwievCalculatorPage.sonuc.getText());
        Double actual=-10.862782780491200215723891499337473741120122;
         System.out.println(expected);
-        //Assert.assertEquals(expected,actual);
+        Assert.assertEquals(expected,actual);
     }
 
     @And("kullanici sayiyi yuvarlar")

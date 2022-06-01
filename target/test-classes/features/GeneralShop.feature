@@ -10,6 +10,7 @@ Feature:
     And kullanici sepete gider
     And kullanici fiyati dogrular
     And kullanici visit to website tusuna basar
-    And kullanici google anlasmasini onaylar
+    And kullanici Web App e gecer ve "Appium" aratir
+    And kullanici tekrar Native App e gecer
 
 

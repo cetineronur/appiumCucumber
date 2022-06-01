@@ -43,5 +43,4 @@ public class InterwievCalculatorPage {
     @AndroidFindBy(id = "com.google.android.calculator:id/result_final")
     public AndroidElement sonuc;
 
-
 }

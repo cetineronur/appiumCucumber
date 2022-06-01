@@ -5,10 +5,13 @@ import io.appium.java_client.MobileElement;
 import io.appium.java_client.TouchAction;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
+import io.appium.java_client.android.nativekey.AndroidKey;
+import io.appium.java_client.android.nativekey.KeyEvent;
 import io.appium.java_client.touch.offset.ElementOption;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import org.junit.Assert;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -90,22 +93,29 @@ public class GeneralShopStep {
         ReusableMethods.waitFor(4);
     }
 
-    @And("kullanici google anlasmasini onaylar")
-    public void kullaniciGoogleAnlasmasiniOnaylar() throws MalformedURLException, InterruptedException {
-        Set contextNames = Driver.get().getContextHandles();
-        //burda mevcut app tururnu(context) bir bir yazdiriyoruz
-        for (Object contextName : contextNames) {
-            System.out.println(contextName);//NATIVE_APP   CHROMIUM
-            Thread.sleep(3000);
-            if (contextName.toString().contains("CHROMIUM")){
-                //alttaki kodda hangi app turunde calisacaksak onu set ediyoruz
-                Driver.get().context((String) contextName);//WEBAPP DEVAM EDECEGIM
-                Thread.sleep(10000);
+
+    @And("kullanici Web App e gecer ve {string} aratir")
+    public void kullaniciWebAppEGecerVeAratir(String string) throws MalformedURLException {
+        ReusableMethods.waitFor(4);
+        Set<String> contextNames = Driver.get().getContextHandles();
+        for (String contextName : contextNames) {
+            System.out.println(contextName); //prints out something like NATIVE_APP \n WEBVIEW_1
+            if(contextName.equals("WEBVIEW_chrome")){
+                ReusableMethods.waitFor(10);
+                Driver.get().context(contextName);
             }
         }
-        Driver.get().findElementByAndroidUIAutomator("new UiScrollable(new UiSelector()).scrollIntoView(text(\"Ich stimme zu\"))");
+        //Driver.get().findElementByXPath("//input[@name='q']").click();
         ReusableMethods.waitFor(2);
-        Driver.get().findElementByXPath("//android.widget.Button[@text='Ich stimme zu']").click();
+        Driver.get().findElementByXPath("//div[@role='combobox']").sendKeys("string", Keys.ENTER);
+        ReusableMethods.waitFor(4);
+        //Driver.get().context("NATIVE_APP");
+    }
+
+    @And("kullanici tekrar Native App e gecer")
+    public void kullaniciTekrarNativeAppEGecer() throws MalformedURLException {
+        Driver.get().pressKey(new KeyEvent().withKey(AndroidKey.BACK));
 
     }
 }
+

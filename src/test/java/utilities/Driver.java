@@ -4,6 +4,7 @@ import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
 import io.appium.java_client.ios.IOSDriver;
 import io.appium.java_client.ios.IOSElement;
+import io.appium.java_client.remote.MobileCapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
 import java.net.MalformedURLException;
@@ -28,6 +29,8 @@ public class Driver {
                     desiredCapabilities.setCapability("platformVersion", "8.0");
                     desiredCapabilities.setCapability("deviceName", "Pixel_2");
                     desiredCapabilities.setCapability("automationName", "UiAutomator2");
+                    desiredCapabilities.setCapability(MobileCapabilityType.NO_RESET,true);
+                   // desiredCapabilities.setCapability(MobileCapabilityType.BROWSER_NAME,"Chrome");
                     //desiredCapabilities.setCapability("orientation","LANDSCAPE");
                    //desiredCapabilities.setCapability("appPackage",ConfigurationReader.getProperty("appPackage"));
                    //desiredCapabilities.setCapability("appActivity",ConfigurationReader.getProperty("appActivity"));
@@ -36,7 +39,7 @@ public class Driver {
                         driver = new AndroidDriver<>(new URL("http://localhost:4723/wd/hub"), desiredCapabilities);
                         Driver.get().manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 
-                   // break;
+                 break;
                 case "browserstack":
                     DesiredCapabilities caps = new DesiredCapabilities();
                     caps.setCapability("browserstack.user", "kartalonur_mgHvyd");
